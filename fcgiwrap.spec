@@ -4,10 +4,9 @@ Release:	1%{?dist}
 Summary:	Simple FastCGI wrapper for CGI scripts
 
 Group:		Development/Libraries
-License:	FOSS
-URL:		https://github.com/gnosek/fcgiwrap
+License:	BSD-like
+URL:		https://github.com/rdempseyidb/fcgiwrap
 Source0:	fcgiwrap-1.1.0.tar.gz
-Patch0:		fcgiwrap-1.1.0.patches
 BuildRoot:	%(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
 
 BuildRequires:	fcgi-devel
@@ -19,15 +18,11 @@ Simple FastCGI wrapper for CGI scripts
 
 %prep
 %setup -q
-%patch0 -p1
 
 
 %build
-#chmod +x %{_builddir}/%{name}-%{version}/configure
-chmod +x ./configure
-touch ./NEWS ./README ./AUTHORS ./ChangeLog
 %configure
-make %{?_smp_mflags}
+make
 
 
 %install
@@ -47,9 +42,4 @@ rm -rf %{buildroot}
 
 
 %changelog
-# install -d -m 755 /usr/local/sbin
-# install -m 755 fcgiwrap /usr/local/sbin
-# install -d -m 755 /usr/local/man/man8
-# install -m 644 fcgiwrap.8 /usr/local/man/man8
-
 
